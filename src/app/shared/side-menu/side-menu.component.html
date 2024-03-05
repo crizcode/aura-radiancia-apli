@@ -1,0 +1,24 @@
+<div id="menu" class="bg-dark min-vh-100 position-fixed text-white w-10 p-4">
+    <div id="logo" class="mb-4">
+        <div class="d-flex align-items-center">
+            <img class="h-8" src="../../../assets/logo.png" alt="logo">
+            <h1 class="text-lg md:text-2xl font-bold text-white ms-2">Aura<span class="text-primary">Radiancia</span></h1>
+        </div>
+    </div>
+    <div id="profile" class="px-2 py-4 d-flex flex-column align-items-center text-center">
+        <p class="text-secondary mt-2">Buenos días,</p>
+        <a href="#" class="d-flex flex-column align-items-center text-decoration-none">
+            <img class="rounded-circle me-2 m-2" src="https://images.unsplash.com/profile-fb-1696954736-43eb7a4ebd86.jpg?ixlib=rb-4.0.3&crop=faces&fit=crop&w=64&h=64" alt="">
+            <span class="text-sm md:text-base font-bold">Cristian Villafana</span>
+        </a>
+    </div>
+    <div id="nav" class="w-full">
+        <ng-container *ngFor="let item of menuItems; let i = index" class="d-flex justify-content-center align-items-center">
+            <div class="d-flex align-items-center justify-content-center mb-2">
+                <a [routerLink]="item.path" routerLinkActive="active" class="nav-link text-white" mat-raised-button color="primary">
+                    <span class="text-lg font-bold" style="font-size: 18px;">{{ item.title }}</span>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+</div>
