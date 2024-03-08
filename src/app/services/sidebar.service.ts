@@ -11,7 +11,10 @@ export interface MenuItem {
 export class SidebarService {
     private menuItems: MenuItem[] = [
         { path: '/dashboard/productos', title: 'Producto' }, 
-        { path: '/dashboard/categoria', title: 'Categoria' }, // Corregido la ruta del producto
+        { path: '/dashboard/categoria', title: 'Categoria' },
+        { path: '/dashboard/proveedor', title: 'Proveedor' }, 
+
+
         // Agrega más elementos del menú según sea necesario
     ];
   

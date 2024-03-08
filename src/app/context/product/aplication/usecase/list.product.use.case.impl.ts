@@ -5,17 +5,18 @@ import { ProductRepository } from '../../domain/ports/out/product.repository';
 
 export class ListProductUseCaseImpl implements ListProductUseCase {
 
-  private readonly ProductRepository: ProductRepository;
+  private readonly productRepository: ProductRepository;
   
-  constructor(ProductRepository: ProductRepository) {
-    this.ProductRepository = ProductRepository;
+  constructor(productRepository: ProductRepository) {
+    this.productRepository = productRepository;
+  }
+
+  findById(productId: number): Observable<ProductModel | null> {
+    return this.productRepository.findById(productId);
   }
 
   listProducts(): Observable<ProductModel[]> {
-    return this.ProductRepository.findAll();
+    return this.productRepository.findAll();
   }
 
-  getProductById(id: number): Observable<ProductModel | null> {
-    return this.ProductRepository.findById(id);
-  }
 }

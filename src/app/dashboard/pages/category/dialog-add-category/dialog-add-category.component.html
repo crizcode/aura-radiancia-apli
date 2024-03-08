@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Crear categoria</h2>
+<mat-dialog-content>
+
+
+    <form class="m-5 border p-3 rounded">
+        <div>
+            <h1 class="text-center">Crear Categoria</h1>
+    
+            <div class="col">
+                <label for="validationDefault01">Nombre Categoria</label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Nombre" required name="name">
+            </div>
+            <div class="row">
+                <div class="col mt-2">
+                    <label for="validationDefault02">Estado</label>
+                    <input type="text" class="form-control" id="validationDefault02" placeholder="Descripción" required
+                        name="descripcion">
+                </div>
+            </div>
+    
+    
+            <div class="row">
+                <div class="col mt-4 ">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" name="creationDate" required [value]="">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker touchUi="true"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+    
+  
+    
+        
+        </div>
+    </form>
+    
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+<mat-divider></mat-divider>
+<section>
+  <div class="example-button-row">
+
+    <button mat-raised-button color="warn" mat-dialog-close> Cerrar </button>
+    <button mat-raised-button color="primary"> Guardar </button>
+    <button mat-raised-button disabled> Guardar </button>
+  </div>
+</section>
+<mat-divider></mat-divider>
+</mat-dialog-actions>

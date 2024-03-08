@@ -5,17 +5,18 @@ import { SupplierRepository } from '../../domain/ports/out/supplier.repository';
 
 export class ListSupplierUseCaseImpl implements ListSupplierUseCase {
 
-  private readonly SupplierRepository: SupplierRepository;
+  private readonly supplierRepository: SupplierRepository;
   
-  constructor(SupplierRepository: SupplierRepository) {
-    this.SupplierRepository = SupplierRepository;
+  constructor(supplierRepository: SupplierRepository) {
+    this.supplierRepository = supplierRepository;
+  }
+
+  findById(supplierId: number): Observable<SupplierModel | null> {
+    return this.supplierRepository.findById(supplierId);
   }
 
   listSuppliers(): Observable<SupplierModel[]> {
-    return this.SupplierRepository.findAll();
+    return this.supplierRepository.findAll();
   }
 
-  getSupplierById(id: number): Observable<SupplierModel | null> {
-    return this.SupplierRepository.findById(id);
-  }
 }

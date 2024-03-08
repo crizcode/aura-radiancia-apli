@@ -8,16 +8,27 @@ import { CategoryRepository } from '../../domain/ports/out/category.repository';
   providedIn: 'root',
 })
 export class CategoryAdapterService implements CategoryRepository {
-  private apiUrl = 'https://localhost:7159/api/v1/Category'; // URL de tu API
+  private apiUrl = 'https://localhost:7159/api/v1/category'; // URL de tu API
 
   constructor(private http: HttpClient) {} // Inyecta HttpClient
 
-  
-  findById(id: number): Observable<CategoryModel | null> {
-    return this.http.get<CategoryModel>(`${this.apiUrl}/${id}`); // Realiza una petición GET a la API
+  findById(categoryId: number): Observable<CategoryModel> { // Cambiado el tipo de categoryId a number
+    return this.http.get<CategoryModel>(`${this.apiUrl}/list/${categoryId}`);
+  }
+
+  create(category: CategoryModel): Observable<CategoryModel> {
+    return this.http.post<CategoryModel>(`${this.apiUrl}/save`, category);
+  }
+
+  update(category: CategoryModel): Observable<CategoryModel> {
+    return this.http.put<CategoryModel>(`${this.apiUrl}/update/${category.categoryId}`, category);
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 
   findAll(): Observable<CategoryModel[]> {
-    return this.http.get<CategoryModel[]>(this.apiUrl); // Realiza una petición GET a la API
+    return this.http.get<CategoryModel[]>(`${this.apiUrl}/list`);
   }
 }

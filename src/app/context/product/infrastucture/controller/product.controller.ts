@@ -1,4 +1,3 @@
-// controller/user/user.controller.ts
 import { Injectable } from '@angular/core';
 import { ProductAdapterService } from '../adapters/product.adapter.service';
 

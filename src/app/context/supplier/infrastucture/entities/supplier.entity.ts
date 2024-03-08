@@ -1,6 +1,7 @@
 export interface SupplierEntity {
-    id: number;
-    name: string;
+    supplierId: number;
+    supplierName: string;
     estado: string;
+  
   }
   

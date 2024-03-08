@@ -1,6 +1,7 @@
-// controller/user/user.controller.ts
-import { Injectable } from '@angular/core';
-import { SupplierAdapterService } from '../adapters/supplier.adapter.service';
+import { Injectable } from "@angular/core";
+import { SupplierAdapterService } from "../adapters/supplier.adapter.service";
+
+
 
 @Injectable({
   providedIn: 'root',
