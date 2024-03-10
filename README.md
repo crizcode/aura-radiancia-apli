@@ -1,5 +1,5 @@
 # AuraRadianciaApp
-# Imagen Referencial
+## Imagen Referencial
 ![image](https://github.com/crizcode/aura-radiancia-apli/assets/88556496/ed872e96-d4c2-4052-902a-a154f58a21ce)
 
 
