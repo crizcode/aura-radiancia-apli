@@ -5,8 +5,8 @@ export interface ProductEntity {
       id: number;
       name: string;
       descripcion: string;
-      precio: number;
-      stock: number;
+      precio: number | null;
+      stock: number | null;
       creationDate: Date;
       Product: CategoryEntity;
       Supplier: SupplierEntity;

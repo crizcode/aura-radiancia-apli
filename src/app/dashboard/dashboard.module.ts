@@ -16,16 +16,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import ProductComponent from './pages/product/product/product.component';
-import { AddProductComponent } from './pages/product/add-product/add-product.component';
-import { EditarProductComponent } from './pages/product/editar-product/editar-productcomponent';
+import { DialogEditarProductComponent } from './pages/product/editar-product/dialog-editar-product.component';
 import CategoryComponent from './pages/category/category/category.component';
 import { DialogAddCategoryComponent } from './pages/category/dialog-add-category/dialog-add-category.component';
-import { MatButtonModule } from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import { DialogEditCategoryComponent } from './pages/category/dialog-edit-category/dialog-edit-category.component';
 import SupplierComponent from './pages/supplier/supplier/supplier.component';
 import { DialogAddSupplierComponent } from './pages/supplier/dialog-add-supplier/dialog-add-supplier.component';
 import { DialogEditSupplierComponent } from './pages/supplier/dialog-edit-supplier/dialog-edit-supplier.component';
+import { DialogAddProductComponent } from './pages/product/add-product/dialog-add-product.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -33,13 +38,13 @@ import { DialogEditSupplierComponent } from './pages/supplier/dialog-edit-suppli
     SideMenuComponent,
     ProductComponent,
     CategoryComponent,
-    AddProductComponent,
-    EditarProductComponent,
+    DialogEditarProductComponent,
     DialogAddCategoryComponent,
     DialogEditCategoryComponent,
     SupplierComponent,
     DialogAddSupplierComponent,
-    DialogEditSupplierComponent
+    DialogEditSupplierComponent,
+    DialogAddProductComponent,
   ],
   imports: [
     CommonModule,
@@ -55,11 +60,17 @@ import { DialogEditSupplierComponent } from './pages/supplier/dialog-edit-suppli
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatListModule,
+    MatExpansionModule,
+    MatTooltipModule,
+
+    
   ]
 })
 export class DashboardModule { }

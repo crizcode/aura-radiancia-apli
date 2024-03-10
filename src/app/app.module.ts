@@ -10,6 +10,7 @@ import { ProductAdapterService } from './context/product/infrastucture/adapters/
 import { CategoryAdapterService } from './context/category/infrastucture/adapters/category.adapter.service';
 import { SupplierAdapterService } from './context/supplier/infrastucture/adapters/supplier.adapter.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,

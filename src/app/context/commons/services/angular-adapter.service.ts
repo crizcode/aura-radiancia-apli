@@ -17,7 +17,8 @@ export class AngularAdapterService {
 
   handleHttpError(error: HttpErrorResponse): void {
     console.error('Error al realizar la solicitud HTTP:', error);
-    // Aquí puedes agregar lógica adicional para mostrar mensajes de error al usuario, enviar informes de errores, etc.
+   
+    
   }
 
 

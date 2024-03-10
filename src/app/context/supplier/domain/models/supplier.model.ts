@@ -1,6 +1,6 @@
 export interface SupplierModel {
     supplierId: number;
-    supplierName: string;
+    name: string;
     estado: string;
  
 }

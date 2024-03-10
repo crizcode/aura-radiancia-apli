@@ -1,6 +1,6 @@
 export interface CategoryEntity {
     categoryId: number;
-    categoryName: string;
+    name: string;
     estado: string;
   
   }
