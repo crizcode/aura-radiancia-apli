@@ -1,4 +1,7 @@
 # AuraRadianciaApp
+# Imagen Referencial
+![image](https://github.com/crizcode/aura-radiancia-apli/assets/88556496/ed872e96-d4c2-4052-902a-a154f58a21ce)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
 
