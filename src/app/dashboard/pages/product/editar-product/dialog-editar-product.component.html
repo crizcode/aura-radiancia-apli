@@ -42,7 +42,13 @@
             </div>
 
         </div>
-
+        <div class="col mt-4">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="Seleccionar fecha" [(ngModel)]="product.creationDate" name="selectedDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
 
         <div class="row">
             <div class="col mt-2">

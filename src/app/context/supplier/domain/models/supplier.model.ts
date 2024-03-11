@@ -1,5 +1,5 @@
 export interface SupplierModel {
-    supplierId: number;
+    supplierId?: number;
     name: string;
     estado: string;
  

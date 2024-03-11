@@ -1,53 +1,66 @@
-<div class="m-4 d-flex justify-content-between align-items-center">
-    <mat-card-title class="ml-4">Lista de  proveedores</mat-card-title>
-    <button  mat-button (click)="dialogAddProveedor()" class="btn btn-primary">Agregar</button>
-  </div>
+<div style="margin-left: 32px; margin-right: 32px; margin-top: 15px;" class="d-flex justify-content-between align-items-center">
+  <mat-card-title  class="fs-5">Modulo de proveedores</mat-card-title>
+  <button (click)="dialogAddProveedor()" class="btn btn-primary">Agregar</button>
+</div>
 
-  <div style="margin: 2rem;">
-    <mat-table [dataSource]="dataSource">
-      <!-- Definir las columnas -->
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let supplier"> {{ supplier.supplierId }} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="nombre">
-        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let supplier"> {{  supplier.name }} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="estado">
-        <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
-        <mat-cell *matCellDef="let  supplier"> {{  supplier.estado }} </mat-cell>
-      </ng-container>
+
+<div style="margin: 2rem;">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    
+    <input matInput (keyup)="applyFilter($event)" [(ngModel)]="value" placeholder="Ex. Provedor" #input>
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-form-field>
+
   
-        
-      
-      <ng-container matColumnDef="acciones">
-        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
-  
-        <mat-cell *matCellDef="let supplier">
-          <!-- Botones de acción -->
-          <div style="margin: 2px; display: flex; gap: 5px;"> 
-            <button class="btn btn-info" style="font-size: 12px; padding: 4px 8px;" (click)="dialogEditProveedor()" >
-              <mat-icon>edit</mat-icon>
-            </button>
-        
-            <button class="btn btn-danger" style="font-size: 12px; padding: 4px 8px;" (click)="eliminarProveedor(supplier.supplierId)">
-              <mat-icon>delete</mat-icon>
+  <mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+  class="mat-elevation-z8">
+
+    <!-- Definir las columnas -->
+    <ng-container matColumnDef="supplierId">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by id"> ID </mat-header-cell>
+      <mat-cell *matCellDef="let supplier"> {{ supplier.supplierId }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by name"> Proveedor </mat-header-cell>
+      <mat-cell *matCellDef="let supplier"> {{ supplier.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by descripcion"> Estado </mat-header-cell>
+      <mat-cell *matCellDef="let supplier"> {{ supplier.estado }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+
+      <mat-cell *matCellDef="let supplier">
+        <!-- Botones de acción -->
+        <div style="margin: 2px; display: flex; gap: 5px;"> 
+          <button class="btn btn-info" style="font-size: 12px; padding: 4px 8px;" (click)="dialogEditarProveedor(supplier.supplierId)" >
+            <mat-icon>edit</mat-icon>
           </button>
-          </div>
-        </mat-cell>
-  
-      </ng-container>
+      
+          <button class="btn btn-danger" style="font-size: 12px; padding: 4px 8px;" (click)=" confirmDeleteProveedor(supplier.supplierId)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        </div>
+      </mat-cell>
 
-  
-      <!-- Asignar las columnas a las filas -->
-      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
-    </mat-table>
-  
-    <!-- Agregar paginación -->
-    <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
-  </div>
-  
-  
-  
+    </ng-container>
+
+    <!-- Asignar las columnas a las filas -->
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+
+  <!-- Agregar paginación -->
+  <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+</div>
+
+

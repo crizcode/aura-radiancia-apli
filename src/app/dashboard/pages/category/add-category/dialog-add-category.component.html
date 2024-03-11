@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Crear categoria</h2>
+<mat-dialog-content>
+    <form class="m-2 border p-3 rounded">
+        
+        <!-- Nombre -->
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Nombre Categoria</mat-label>
+                <input matInput placeholder="Ex. categ" [(ngModel)]="categoryData.name" name="name">
+            </mat-form-field>
+
+        </div>
+
+        <!-- Descricpión -->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Estado</mat-label>
+                    <input matInput placeholder="Ex. estado" [(ngModel)]="categoryData.estado" name="descripcion">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="field-button-row">
+            <button mat-raised-button color="warn" mat-dialog-close> Volver </button>
+            <button mat-raised-button (click)="crearCategoria()"> Guardar </button>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+</mat-dialog-actions>

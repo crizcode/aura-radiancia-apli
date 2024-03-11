@@ -3,6 +3,19 @@ import { CommonModule } from '@angular/common';
 import DashboardComponent from './dashboard.component';
 import { SideMenuComponent } from '../shared/side-menu/side-menu.component';
 import { RouterModule } from '@angular/router';
+import ProductComponent from './pages/product/product/product.component';
+import { DialogEditarProductComponent } from './pages/product/editar-product/dialog-editar-product.component';
+import CategoryComponent from './pages/category/category/category.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { FooterComponent } from '../shared/footer/footer.component';
+import { DialogAddSupplierComponent } from './pages/supplier/add-supplier/dialog-add-supplier.component';
+import SupplierComponent from './pages/supplier/supplier/supplier.component';
+import { DialogEditarSupplierComponent } from './pages/supplier/editar-supplier/dialog-editar-supplier.component';
+import { DialogAddProductComponent } from './pages/product/add-product/dialog-add-product.component';
+import { DialogEditarCategoryComponent } from './pages/category/editar-category/dialog-editar-category.component';
+import { DialogAddCategoryComponent } from './pages/category/add-category/dialog-add-category.component';
+
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
@@ -15,22 +28,15 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import ProductComponent from './pages/product/product/product.component';
-import { DialogEditarProductComponent } from './pages/product/editar-product/dialog-editar-product.component';
-import CategoryComponent from './pages/category/category/category.component';
-import { DialogAddCategoryComponent } from './pages/category/dialog-add-category/dialog-add-category.component';
 import {MatDividerModule} from '@angular/material/divider';
-import { DialogEditCategoryComponent } from './pages/category/dialog-edit-category/dialog-edit-category.component';
-import SupplierComponent from './pages/supplier/supplier/supplier.component';
-import { DialogAddSupplierComponent } from './pages/supplier/dialog-add-supplier/dialog-add-supplier.component';
-import { DialogEditSupplierComponent } from './pages/supplier/dialog-edit-supplier/dialog-edit-supplier.component';
-import { DialogAddProductComponent } from './pages/product/add-product/dialog-add-product.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -40,11 +46,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CategoryComponent,
     DialogEditarProductComponent,
     DialogAddCategoryComponent,
-    DialogEditCategoryComponent,
+    DialogEditarCategoryComponent,
     SupplierComponent,
     DialogAddSupplierComponent,
-    DialogEditSupplierComponent,
+    DialogEditarSupplierComponent,
     DialogAddProductComponent,
+    ConfirmDialogComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +77,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatExpansionModule,
     MatTooltipModule,
-
+    MatSortModule,
+    
     
   ]
 })

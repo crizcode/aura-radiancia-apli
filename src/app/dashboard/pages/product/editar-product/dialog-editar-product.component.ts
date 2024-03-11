@@ -54,9 +54,12 @@ export class DialogEditarProductComponent implements OnInit {
   }
 
   updateProducto(): void {
-    // Lógica para actualizar el producto aquí
-
-    // Cerrar el diálogo después de actualizar
-    this.dialogRef.close();
+    this.productService.update(this.product).subscribe(() => {
+      console.log('Producto actualizado correctamente');
+      this.dialogRef.close('success');
+    }, error => {
+      console.error('Error al actualizar el producto:', error);
+      // Puedes manejar el error aquí si lo deseas
+    });
   }
 }

@@ -7,26 +7,69 @@ import { ProductAdapterService } from 'src/app/context/product/infrastucture/ada
 import { DialogAddProductComponent } from '../add-product/dialog-add-product.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditarProductComponent } from '../editar-product/dialog-editar-product.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import {MatSort, Sort} from '@angular/material/sort';
+import { ConfirmDialogComponent } from 'src/app/dashboard/components/confirm-dialog/confirm-dialog.component';
+
 
 @Component({
   templateUrl: './product.component.html',
 })
 export default class ProductComponent implements OnInit {
+  
   products: ProductModel[] = [];
   dataSource = new MatTableDataSource<ProductModel>();
-  columnsToDisplay: string[] = ['id', 'nombre', 'descripcion', 'precio', 'cantidad', 'fecha', 'categoria', 'proveedor', 'acciones'];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  columnsToDisplay: string[] = ['id', 'name', 'descripcion', 'precio', 'stock', 'creationDate', 'categoryName', 'supplierName', 'acciones'];
+  value = '';
 
   constructor(
     private productService: ProductAdapterService,
     private angularService: AngularAdapterService,
-    public dialog: MatDialog,
+    public dialog: MatDialog,                //dialog
+    private _liveAnnouncer: LiveAnnouncer,  // sort
   ) { }
 
   ngOnInit(): void {
     this.listarProductos();
   }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+
+
+  applyFilter(event: Event) {
+    const target = (event.target as HTMLInputElement);
+    if (target) {
+      const filterValue = target.value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
+  clearFilter() {
+    this.value = '';
+    this.dataSource.filter = ''; // Limpiar el filtro directamente
+    this.listarProductos();
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+
 
   dialogAddProducto() {
     const dialogRef = this.dialog.open(DialogAddProductComponent);
@@ -36,6 +79,7 @@ export default class ProductComponent implements OnInit {
       }
     });
   }
+  
 
   listarProductos(): void {
     this.productService.findAll().subscribe(products => {
@@ -60,24 +104,35 @@ export default class ProductComponent implements OnInit {
   }
 
   // Eliminar producto
-  eliminarProducto(id: number): void {
-    const confirmacion = window.confirm(`¿Estás seguro de que deseas eliminar el producto con ID: ${id}?`);
 
-    if (confirmacion) {
-      this.productService.deleteById(id).subscribe({
-        next: () => {
-          console.log('Producto eliminado correctamente');
-          this.listarProductos();
-        },
-        error: (error) => {
-          console.error('Error al eliminar producto:', error);
-        },
-        complete: () => {
-          console.log('La solicitud de eliminación se completó correctamente.');
-        }
-      });
-    } else {
-      console.log('Eliminación de producto cancelada por el usuario');
-    }
+  confirmDeleteProducto(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Estás seguro de que deseas eliminar este producto?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Si el usuario confirmó, eliminamos el producto
+        this.productService.deleteById(id).subscribe({
+          next: () => {
+            //console.log('Producto eliminado correctamente');
+            this.listarProductos();
+          },
+          error: (error) => {
+            console.error('Error al eliminar producto:', error);
+          },
+          complete: () => {
+            //console.log('La solicitud de eliminación se completó correctamente.');
+          }
+        });
+      } else {
+        // Si el usuario canceló, mostramos un mensaje en la consola
+        //console.log('Eliminación de producto cancelada por el usuario');
+      }
+    });
   }
+
+
+
 }

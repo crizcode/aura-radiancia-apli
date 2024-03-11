@@ -1,85 +1,138 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AngularAdapterService } from 'src/app/context/commons/services/angular-adapter.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import {MatSort, Sort} from '@angular/material/sort';
+import { ConfirmDialogComponent } from 'src/app/dashboard/components/confirm-dialog/confirm-dialog.component';
 import { CategoryModel } from 'src/app/context/category/domain/models/category.model';
 import { CategoryAdapterService } from 'src/app/context/category/infrastucture/adapters/category.adapter.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogAddCategoryComponent } from '../dialog-add-category/dialog-add-category.component';
-import { DialogEditCategoryComponent } from '../dialog-edit-category/dialog-edit-category.component';
-
+import { DialogAddCategoryComponent } from '../add-category/dialog-add-category.component';
+import { DialogEditarCategoryComponent } from '../editar-category/dialog-editar-category.component';
 
 
 @Component({
   templateUrl: './category.component.html',
-
 })
 export default class CategoryComponent implements OnInit {
+  
   categories: CategoryModel[] = [];
   dataSource = new MatTableDataSource<CategoryModel>();
-  columnsToDisplay: string[] = ['id', 'nombre', 'estado', 'acciones'];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  columnsToDisplay: string[] = ['categoryId', 'name', 'estado', 'acciones'];
+  value = '';
 
   constructor(
     private categoryService: CategoryAdapterService,
     private angularService: AngularAdapterService,
-    public dialog: MatDialog,
+    public dialog: MatDialog,                //dialog
+    private _liveAnnouncer: LiveAnnouncer,  // sort
   ) { }
 
   ngOnInit(): void {
     this.listarCategorias();
   }
 
-
-  dialogAddProduct() {
-    this.dialog.open(DialogAddCategoryComponent);
-}
-
-dialogEditProduct() {
-  this.dialog.open(DialogEditCategoryComponent);
-}
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
 
 
-
-listarCategorias(): void {
-  this.categoryService.findAll()
-    .subscribe(categorys => {
-      this.categories = categorys;
-      this.dataSource.data = categorys;
-      this.dataSource.paginator = this.paginator;
-    }, error => {
-      this.angularService.handleHttpError(error); // Utilizando el método de manejo de errores centralizado
-    });
-}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
 
 
+  applyFilter(event: Event) {
+    const target = (event.target as HTMLInputElement);
+    if (target) {
+      const filterValue = target.value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+  
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+  
+  clearFilter() {
+    this.value = '';
+    this.dataSource.filter = ''; // Limpiar el filtro directamente
+    this.listarCategorias();
+  }
 
-  // eliminar categoria
-
-  eliminarCategoria(id: number): void {
-
-    const confirmacion = window.confirm(`¿Estás seguro de que deseas eliminar el categoryo con ID: ${id}?`);
-    
-    if (confirmacion) {
-        // llamamos al servicio para eliminar el categoryo
-        this.categoryService.deleteById(id).subscribe(() => {
-            console.log('Categoryo eliminado correctamente');
-            
-        }, error => {
-            console.error('Error al eliminar categoryo:', error);
-           
-        });
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
-
-        console.log('Eliminación de categoryo cancelada por el usuario');
+      this._liveAnnouncer.announce('Sorting cleared');
     }
   }
 
 
-  editarCategoria(){
 
+  dialogAddCategoria() {
+    const dialogRef = this.dialog.open(DialogAddCategoryComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.listarCategorias();
+      }
+    });
   }
+  
+
+  listarCategorias(): void {
+    this.categoryService.findAll().subscribe(categories => {
+      this.categories = categories;
+      this.dataSource.data = categories;
+      this.dataSource.paginator = this.paginator;
+    }, error => {
+      this.angularService.handleHttpError(error);
+    });
+  }
+
+  // Navegar a editar
+  dialogEditarCategoria(categoryId: number): void {
+    const dialogRef = this.dialog.open(DialogEditarCategoryComponent, {
+      data: { categoryId: categoryId }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.listarCategorias();
+      }
+    });
+  }
+
+  // Eliminar producto
+
+  confirmDeleteCategoria(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: { message: '¿Estás seguro de que deseas eliminar esta categoria?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Si el usuario confirmó, eliminamos el producto
+        this.categoryService.deleteById(id).subscribe({
+          next: () => {
+            //console.log('Categoryo eliminado correctamente');
+            this.listarCategorias();
+          },
+          error: (error) => {
+            console.error('Error al eliminar producto:', error);
+          },
+          complete: () => {
+            //console.log('La solicitud de eliminación se completó correctamente.');
+          }
+        });
+      } else {
+        // Si el usuario canceló, mostramos un mensaje en la consola
+        //console.log('Eliminación de producto cancelada por el usuario');
+      }
+    });
+  }
+
+
+
 }
