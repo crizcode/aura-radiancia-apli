@@ -1,0 +1,37 @@
+<div id="container">
+  <mat-card id="card-container">
+
+    <div id="content-container">
+
+      <mat-card-content>
+        <div class="d-flex align-items-center">
+          <img class="h-8" src="../../../assets/logo2.png" alt="logo">
+          <h1 class="font-bold text-black ms-2">Aura<span class="text-black">Radiancia</span></h1>
+        </div>  
+      </mat-card-content>
+
+      <mat-card-title>Login</mat-card-title>
+
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your user</mat-label>
+          <input matInput placeholder="User"  name="userName" [formControl]="userName" required>
+          <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [formControl]="pass" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-content>
+
+    </div>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="login()" id="button">Ingresar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

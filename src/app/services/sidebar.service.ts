@@ -10,12 +10,9 @@ export interface MenuItem {
 })
 export class SidebarService {
     private menuItems: MenuItem[] = [
-        { path: '/dashboard/productos', title: 'Producto' }, 
-        { path: '/dashboard/categoria', title: 'Categoria' },
-        { path: '/dashboard/proveedor', title: 'Proveedor' }, 
-
-
-        // Agrega más elementos del menú según sea necesario
+        { path: '/home/productos', title: 'Producto' }, 
+        { path: '/home/categoria', title: 'Categoria' },
+        { path: '/home/proveedor', title: 'Proveedor' }, 
     ];
   
     constructor() { }

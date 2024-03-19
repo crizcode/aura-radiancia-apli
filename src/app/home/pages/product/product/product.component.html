@@ -1,0 +1,91 @@
+<div style="margin-left: 32px; margin-right: 32px; margin-top: 15px;" class="d-flex justify-content-between align-items-center">
+  <mat-card-title  class="fs-5">Modulo de productos</mat-card-title>
+  <button (click)="dialogAddProducto()" class="btn btn-primary">Agregar</button>
+</div>
+
+
+<div style="margin: 2rem;">
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtro</mat-label>
+    
+    <input matInput (keyup)="applyFilter($event)" [(ngModel)]="value" placeholder="Ex. Laptop" #input>
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </mat-form-field>
+
+  
+  <mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+  class="mat-elevation-z8">
+
+    <!-- columnas -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by id"> ID </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by name"> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by descripcion"> Descripción </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.descripcion }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by precio"> Precio </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.precio | currency:'S/ ':'symbol':'1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by stock"> Cantidad </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.stock }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="creationDate">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by fecha"> Fecha creación </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.creationDate | date: 'dd/MM/yy' }} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="categoryName">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by categoria"> Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.categoryName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="supplierName">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by proveedor"> Proveedor </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.supplierName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+
+      <mat-cell *matCellDef="let product">
+        <!-- Botones de acción -->
+        <div style="margin: 2px; display: flex; gap: 5px;"> 
+          <button class="btn btn-info" style="font-size: 12px; padding: 4px 8px;" (click)="dialogEditarProducto(product.id)" >
+            <mat-icon>edit</mat-icon>
+          </button>
+      
+          <button class="btn btn-danger" style="font-size: 12px; padding: 4px 8px;" (click)=" confirmDeleteProducto(product.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        </div>
+      </mat-cell>
+
+    </ng-container>
+
+    <!-- Asignar las columnas a las filas -->
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+
+  <!-- Agregar paginación -->
+  <mat-paginator [pageSizeOptions]="[5,10]" showFirstLastButtons></mat-paginator>
+</div>
+
+
