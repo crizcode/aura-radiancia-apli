@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>Crear Persona</h2>
+<mat-dialog-content>
+    <form class="m-2 border p-3 rounded">
+
+
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Pepe" [(ngModel)]="personData.nombre" name="name">
+            </mat-form-field>
+
+        </div>
+
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Apellido</mat-label>
+                <input matInput placeholder="Palotes" [(ngModel)]="personData.apellido" name="apellido">
+            </mat-form-field>
+
+        </div>
+
+        
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Palotes" [(ngModel)]="personData.email" name="email">
+            </mat-form-field>
+
+        </div>
+
+        <!-- Descricpión -->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="ppaotes" [(ngModel)]="personData.userName" name="username">
+                </mat-form-field>
+            </div>
+
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Clave</mat-label>
+                    <input matInput placeholder="*****" [(ngModel)]="personData.pass" name="pass">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <!-- Descricpión -->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Departamento</mat-label>
+                    <input matInput placeholder="admin" [(ngModel)]="personData.departmentId" name="dptid">
+                </mat-form-field>
+            </div>
+
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Rol</mat-label>
+                    <input matInput placeholder="admin" [(ngModel)]="personData.roleId" name="role">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="field-button-row">
+            <button mat-raised-button color="warn" mat-dialog-close> Volver </button>
+            <button mat-raised-button (click)="crearPersona()"> Guardar </button>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+</mat-dialog-actions>

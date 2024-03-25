@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import DashboardComponent from './home.component';
 import { SideMenuComponent } from '../shared/side-menu/side-menu.component';
 import { RouterModule } from '@angular/router';
 import ProductComponent from './pages/product/product/product.component';
@@ -14,6 +13,8 @@ import { DialogEditarSupplierComponent } from './pages/supplier/editar-supplier/
 import { DialogAddProductComponent } from './pages/product/add-product/dialog-add-product.component';
 import { DialogEditarCategoryComponent } from './pages/category/editar-category/dialog-editar-category.component';
 import { DialogAddCategoryComponent } from './pages/category/add-category/dialog-add-category.component';
+import { LoginComponent } from '../auth/login/login.component';
+import HomeComponent from './home.component';
 
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -36,12 +37,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSortModule } from '@angular/material/sort';
-import { LoginComponent } from '../auth/login/login.component';
+
+import { DialogAddPersonComponent } from './pages/person/add-person/dialog-add-person.component';
+import { DialogEditarPersonComponent } from './pages/person/editar-person/dialog-editar-person.component';
+import PersonComponent from './pages/person/person/person.component';
+
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    HomeComponent,
     SideMenuComponent,
     ProductComponent,
     CategoryComponent,
@@ -54,7 +59,10 @@ import { LoginComponent } from '../auth/login/login.component';
     DialogAddProductComponent,
     ConfirmDialogComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    PersonComponent,
+    DialogEditarPersonComponent,
+    DialogAddPersonComponent,
   ],
   imports: [
     CommonModule,

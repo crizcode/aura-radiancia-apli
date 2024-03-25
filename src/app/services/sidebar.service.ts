@@ -9,15 +9,24 @@ export interface MenuItem {
     providedIn: 'root'
 })
 export class SidebarService {
-    private menuItems: MenuItem[] = [
+    private adminMenuItems: MenuItem[] = [
         { path: '/home/productos', title: 'Producto' }, 
         { path: '/home/categoria', title: 'Categoria' },
         { path: '/home/proveedor', title: 'Proveedor' }, 
     ];
   
+    private usersMenuItems: MenuItem[] = [
+        { path: '/home/persona', title: 'Persona' }, 
+    ];
+  
+
     constructor() { }
   
-    getMenuItems(): MenuItem[] {
-        return this.menuItems;
+    getAdminMenuItems(): MenuItem[] {
+        return this.adminMenuItems;
+    }
+
+    getUsersMenuItems(): MenuItem[] {
+        return this.usersMenuItems;
     }
 }

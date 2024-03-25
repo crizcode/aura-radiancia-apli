@@ -8,13 +8,15 @@ import { MenuItem, SidebarService } from 'src/app/services/sidebar.service';
   styleUrls: ['./side-menu.component.css']
 })
 export class SideMenuComponent implements OnInit {
-  public menuItems: MenuItem[] = [];
+  public adminMenuItems: MenuItem[] = [];
+  public usersMenuItems: MenuItem[] = [];
 
   constructor(private sidebarService: SidebarService, 
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.menuItems = this.sidebarService.getMenuItems();
+    this.adminMenuItems = this.sidebarService.getAdminMenuItems();
+    this.usersMenuItems = this.sidebarService.getUsersMenuItems();
   }
 
     logout(): void {

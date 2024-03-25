@@ -6,31 +6,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {MatSort, Sort} from '@angular/material/sort';
 import { ConfirmDialogComponent } from 'src/app/home/components/confirm-dialog/confirm-dialog.component';
-import { CategoryModel } from 'src/app/context/category/domain/models/category.model';
-import { CategoryAdapterService } from 'src/app/context/category/infrastucture/adapters/category.adapter.service';
-import { DialogAddCategoryComponent } from '../add-category/dialog-add-category.component';
-import { DialogEditarCategoryComponent } from '../editar-category/dialog-editar-category.component';
+import { PersonModel } from 'src/app/context/person/domain/models/person.model';
+import { PersonAdapterService } from 'src/app/context/person/infrastucture/adapters/person.adapter.service';
+import { DialogAddPersonComponent } from '../add-person/dialog-add-person.component';
+import { DialogEditarPersonComponent } from '../editar-person/dialog-editar-person.component';
 
 
 @Component({
-  templateUrl: './category.component.html',
+  templateUrl: './person.component.html',
 })
-export default class CategoryComponent implements OnInit {
+export default class PersonComponent implements OnInit {
   
-  categories: CategoryModel[] = [];
-  dataSource = new MatTableDataSource<CategoryModel>();
-  columnsToDisplay: string[] = ['categoryId', 'name', 'estado', 'acciones'];
+  people: PersonModel[] = [];
+  dataSource = new MatTableDataSource<PersonModel>();
+  columnsToDisplay: string[] = ['id', 'nombre', 'apellido', 'email','userName','departmentId','roleId','estado', 'acciones'];
   value = '';
 
   constructor(
-    private categoryService: CategoryAdapterService,
+    private personService: PersonAdapterService,
     private angularService: AngularAdapterService,
     public dialog: MatDialog,               
     private _liveAnnouncer: LiveAnnouncer,
   ) { }
 
   ngOnInit(): void {
-    this.listarCategorias();
+    this.listarPersonas();
   }
 
   ngAfterViewInit(): void {
@@ -58,7 +58,7 @@ export default class CategoryComponent implements OnInit {
   clearFilter() {
     this.value = '';
     this.dataSource.filter = '';
-    this.listarCategorias();
+    this.listarPersonas();
   }
 
   announceSortChange(sortState: Sort) {
@@ -71,20 +71,20 @@ export default class CategoryComponent implements OnInit {
 
 
 
-  dialogAddCategoria() {
-    const dialogRef = this.dialog.open(DialogAddCategoryComponent);
+  dialogAddPersona() {
+    const dialogRef = this.dialog.open(DialogAddPersonComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
-        this.listarCategorias();
+        this.listarPersonas();
       }
     });
   }
   
 
-  listarCategorias(): void {
-    this.categoryService.findAll().subscribe(categories => {
-      this.categories = categories;
-      this.dataSource.data = categories;
+  listarPersonas(): void {
+    this.personService.findAll().subscribe(people => {
+      this.people = people;
+      this.dataSource.data = people;
       this.dataSource.paginator = this.paginator;
     }, error => {
       this.angularService.handleHttpError(error);
@@ -92,33 +92,33 @@ export default class CategoryComponent implements OnInit {
   }
 
   // Navegar a editar
-  dialogEditarCategoria(categoryId: number): void {
-    const dialogRef = this.dialog.open(DialogEditarCategoryComponent, {
-      data: { categoryId: categoryId }
+  dialogEditarPersona(personId: number): void {
+    const dialogRef = this.dialog.open(DialogEditarPersonComponent, {
+      data: { personId: personId }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
-        this.listarCategorias();
+        this.listarPersonas();
       }
     });
   }
 
-  // Eliminar producto
+  // Eliminar persona
 
-  confirmDeleteCategoria(id: number): void {
+  confirmDeletePersona(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
-      data: { message: '¿Estás seguro de que deseas eliminar esta categoria?' }
+      data: { message: '¿Estás seguro de que deseas inhabilitar esta persona?' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.categoryService.deleteById(id).subscribe({
+        this.personService.deleteById(id).subscribe({
           next: () => {
-            this.listarCategorias();
+            this.listarPersonas();
           },
           error: (error) => {
-            console.error('Error al eliminar categoria:', error);
+            console.error('Error al eliminar persona:', error);
           },
           complete: () => {
           }

@@ -33,7 +33,7 @@ createPerson(person: PersonModel): Observable<PersonModel> {
   return this.createPersonUseCase.createPerson(person);
 }
 
-findById(personId: number): Observable<PersonModel | null> { // Corregido el tipo de retorno a Observable<PersonModel | null>
+findById(personId: number): Observable<PersonModel | null> { 
   return this.listPersonUseCase.findById(personId);
 }
 

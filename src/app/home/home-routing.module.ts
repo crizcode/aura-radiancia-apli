@@ -6,6 +6,7 @@ import ProductComponent from './pages/product/product/product.component';
 import CategoryComponent from './pages/category/category/category.component';
 import SupplierComponent from './pages/supplier/supplier/supplier.component';
 import { AuthGuardService } from '../auth/auth-guard.service';
+import PersonComponent from './pages/person/person/person.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'proveedor',
         component: SupplierComponent,
+      },
+      {
+        path: 'persona',
+        component: PersonComponent,
       },
     ]
   },

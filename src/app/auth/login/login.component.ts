@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { PersonAdapterService } from 'src/app/context/person/infrastucture/adapters/person.adapter.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { AuthAdapterService } from 'src/app/context/person/infrastucture/adapters/auth.adapter.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   pass = new FormControl('', [Validators.required]);
   errorMessage = '';
 
-  constructor(private loginService: PersonAdapterService,
+  constructor(private loginService: AuthAdapterService,
     private router: Router,
     private authService: AuthService) { }
 
@@ -24,8 +24,8 @@ export class LoginComponent {
       this.loginService.login(this.userName.value, this.pass.value).subscribe(
         response => {
           // Manejar la respuesta del servidor después de iniciar sesión correctamente
-          console.log('Inicio de sesión exitoso:', response);
-          this.authService.guardarToken(response.token);
+          //console.log('Inicio de sesión exitoso:', response);
+          this.authService.guardarToken(response.token, response.refreshToken);
           // Verificar si el usuario ya está autenticado
           if (this.authService.isAuthenticated()) {
             // El usuario ya está autenticado, redirigir directamente al panel de dashboard

@@ -37,7 +37,22 @@ input {
   width: 100%;
 }
 
-h1 {
+.mat-h1 {
+  font-size: 27px;
+  font-weight: bold;
   margin-top: 0;
   margin-bottom: 0;
+  font-family: Verdana, sans-serif; 
+  color: #000000; 
+  text-shadow: 2px 2px 4px rgba(240, 94, 186, 0.3); 
+}
+
+.mat-span {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Verdana, sans-serif; 
+  color: hwb(334 31% 15%); 
+  text-shadow: 2px 2px 4px rgba(254, 217, 217, 0.3); 
 }

@@ -1,10 +1,10 @@
 export interface PersonModel {
-    id: number;
+    id?: number;
     nombre: string;
     apellido: string;
     email: string;
     userName: string;
-    // No incluyas la propiedad 'pass' ya que no es necesario enviarla al frontend
+    estado?: string;
     departmentId: number;
     roleId: number;
   }

@@ -12,12 +12,8 @@ export class PersonAdapterService implements PersonRepository {
 
   constructor(private http: HttpClient) {} // Inyecta HttpClient
 
-  login(username: string, pass: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/authenticate`, { username, pass });
-  }
-
-  findById(personId: number): Observable<PersonModel> { // Cambiado el tipo de personId a number
-    return this.http.get<PersonModel>(`${this.apiUrl}/list/${personId}`);
+  findById(Id: number): Observable<PersonModel> { // Cambiado el tipo de personId a number
+    return this.http.get<PersonModel>(`${this.apiUrl}/list/${Id}`);
   }
 
   create(person: PersonModel): Observable<PersonModel> {

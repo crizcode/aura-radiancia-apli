@@ -5,3 +5,25 @@ table {
   th.mat-sort-header-sorted {
     color: black;
   }
+
+  .container {
+    margin: 32px;
+  }
+  
+  .header {
+    margin-top: 15px;
+  }
+  
+  .filter {
+    margin: 2rem;
+  }
+  
+  .table-wrapper {
+    margin-top: 1rem;
+  }
+  
+  .action-cell {
+    display: flex;
+    gap: 5px;
+  }
+  

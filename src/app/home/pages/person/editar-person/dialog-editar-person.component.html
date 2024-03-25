@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Editar persona</h2>
+<mat-dialog-content >
+    <form class="m-2 border p-3 rounded">
+        
+        <!-- Nombre -->
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Pepe" [(ngModel)]="person.nombre" name="name">
+            </mat-form-field>
+
+        </div>
+
+        <!-- Apellido -->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput placeholder="Palotes" [(ngModel)]="person.apellido" name="apellido">
+                </mat-form-field>
+            </div>
+
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <mat-divider></mat-divider>
+    <section>
+        <div class="field-button-row">
+            <button mat-raised-button color="warn" mat-dialog-close> Volver </button>
+            <button mat-raised-button (click)="updatePersona()"> Guardar </button>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+</mat-dialog-actions>
