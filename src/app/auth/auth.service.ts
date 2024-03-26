@@ -97,8 +97,10 @@ export class AuthService {
     return this.authService.renewToken(refreshToken).pipe(
       tap((response) => {
         const newToken = response.token;
+        const refreshToken = response.refreshToken;
         // Almacena el nuevo token en el almacenamiento local
         localStorage.setItem('aura-token', newToken);
+        localStorage.setItem('aura-refresh-token', refreshToken);
        // console.log('Token renovado exitosamente.');
       }),
       catchError(error => {
