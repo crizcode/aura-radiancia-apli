@@ -22,6 +22,49 @@
             </div>
 
         </div>
+
+                <!-- Apellido -->
+                <div class="row">
+                    <div class="col mt-2">
+                        <mat-form-field class="field-full-width" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Palotes" [(ngModel)]="person.email" name="email">
+                        </mat-form-field>
+                    </div>
+        
+                </div>
+
+        <!-- User and Pass-->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput placeholder="ppaotes" [(ngModel)]="person.userName" name="username">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
+        <!-- Depart and Role -->
+        <div class="row">
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Departamento</mat-label>
+                    <input matInput placeholder="IT" [(ngModel)]="person.departmentId" name="dptid">
+                </mat-form-field>
+            </div>
+
+            <div class="col mt-2">
+                <mat-form-field class="field-full-width" appearance="fill">
+                    <mat-label>Rol</mat-label>
+                    <input matInput placeholder="Admin" [(ngModel)]="person.roleId" name="role">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+
     </form>
 </mat-dialog-content>
 

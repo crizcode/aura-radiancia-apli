@@ -12,16 +12,26 @@
 
         </div>
 
-        <!-- Descricpión -->
-        <div class="row">
-            <div class="col mt-2">
-                <mat-form-field class="field-full-width" appearance="fill">
-                    <mat-label>Estado</mat-label>
-                    <input matInput placeholder="Ex. prod 1 desc" [(ngModel)]="category.estado" name="estado">
-                </mat-form-field>
-            </div>
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Descricpión</mat-label>
+                <input matInput placeholder="Ex. desc " [(ngModel)]="category.descrip" name="descripcion">
+            </mat-form-field>
 
         </div>
+        <!-- Estado -->
+        <div class="row">
+            <div class="col mt-2">
+              <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Estado</mat-label>
+                <mat-select [(ngModel)]="category.estado" name="estado">
+                  <mat-option *ngFor="let estado of estados" [value]="estado.value"> {{ estado.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
     </form>
 </mat-dialog-content>
 

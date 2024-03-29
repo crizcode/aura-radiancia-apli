@@ -32,22 +32,30 @@ export class DialogEditarSupplierComponent implements OnInit {
         console.error('Error al obtener los datos:', error);
         return throwError(error);
       })
-    ).subscribe(({ supplier}) => {
+    ).subscribe(({ supplier }) => {
       if (!supplier) {
         console.error('No se encontró el proveedor');
         return;
       }
-      this.supplier = supplier;
+      this.supplier = supplier; // Asigna el proveedor recibido
       this.loaded = true;
     });
   }
 
+  
   updateProveedor(): void {
-    this.supplierService.update(this.supplier).subscribe(() => {
-      console.log('Proveedor actualizado correctamente');
+      // Convertir el estado a una cadena '1' o '0'
+      this.supplier.estado = this.supplier.estado == 'Activo' ? '1' : '0';
+      this.supplierService.update(this.supplier).subscribe(() => {
       this.dialogRef.close('success');
     }, error => {
       console.error('Error al actualizar el proveedor:', error);
     });
   }
+
+  estados = [
+    { name: 'Activo', value: 'Activo' },
+    { name: 'Inactivo', value: 'Inactivo' }
+  ];
+  
 }

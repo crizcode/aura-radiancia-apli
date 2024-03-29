@@ -19,7 +19,7 @@ export class AuthService {
 
   // Método para iniciar el temporizador de renovación del token
   private startTokenRenewalTimer(): void {
-    this.tokenRenewalInterval = interval(60000) // Verificar cada 28 minutos (28 * 60 * 1000 milisegundos)
+    this.tokenRenewalInterval = interval(60000) // Verificar cada 1 minuto
       .subscribe(() => {
         if (this.shouldRenewToken()) {
           this.renewToken().subscribe(
@@ -64,15 +64,12 @@ export class AuthService {
   }
 
 
-
   shouldRenewToken(): boolean {
     // Implementa la lógica para determinar si el token necesita ser renovado
-    // Por ejemplo, puedes verificar si el token está a punto de expirar
     const token = localStorage.getItem('aura-token');
     if (!token) {
       return false;
     }
-  
     // Obteniendo la fecha de expiración del token
     const tokenExpiration = new Date(0);
     tokenExpiration.setUTCSeconds(JSON.parse(atob(token.split('.')[1])).exp);
@@ -81,7 +78,7 @@ export class AuthService {
     const now = new Date();
     const timeUntilExpiration = tokenExpiration.getTime() - now.getTime();
   
-    // Devuelve true si el tiempo hasta la expiración es menor que un cierto umbral (por ejemplo, 2 minutos)
+    // Devuelve true si el tiempo hasta la expiración es menor que un cierto umbral (por ejemplo, 1 minutos)
     // y también si el tiempo hasta la expiración es mayor o igual a cero (indicando que el token aún no ha expirado)
     return timeUntilExpiration < 60000 && timeUntilExpiration >= 0; // 1 minuto
   }

@@ -31,6 +31,12 @@
       <mat-cell *matCellDef="let category"> {{ category.name }} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="descrip">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by desc"> Descripción </mat-header-cell>
+      <mat-cell *matCellDef="let category"> {{ category.descrip }} </mat-cell>
+    </ng-container>
+
+
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by estado"> Estado </mat-header-cell>
       <mat-cell *matCellDef="let category"> {{ category.estado }} </mat-cell>
@@ -42,11 +48,11 @@
       <mat-cell *matCellDef="let category">
         <!-- Botones de acción -->
         <div style="margin: 2px; display: flex; gap: 5px;"> 
-          <button class="btn btn-info" style="font-size: 6px; padding: 1px 2px;" (click)="dialogEditarCategoria(category.categoryId)" >
+          <button class="btn btn-info" style="font-size: 4px; padding: 1px 1px;" (click)="dialogEditarCategoria(category.categoryId)" >
             <mat-icon>edit</mat-icon>
           </button>
       
-          <button class="btn btn-danger" style="font-size: 6px; padding: 1px 2px;" (click)=" confirmDeleteCategoria(category.categoryId)">
+          <button class="btn btn-danger" style="font-size: 4px; padding: 1px 1px;" (click)=" confirmDeleteCategoria(category.categoryId)">
             <mat-icon>delete</mat-icon>
         </button>
         </div>

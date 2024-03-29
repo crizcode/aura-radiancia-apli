@@ -18,7 +18,7 @@ export class DialogAddCategoryComponent implements OnInit {
 
   categoryData = {
     name: '',
-    estado: '',
+    descrip: '',
   };
 
   constructor(
@@ -50,7 +50,7 @@ export class DialogAddCategoryComponent implements OnInit {
   isValidCategoryData(): boolean {
     return (
       this.categoryData.name.trim() !== '' &&
-      this.categoryData.estado !== null
+      this.categoryData.descrip !== null
     );
   }
 

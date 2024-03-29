@@ -19,7 +19,7 @@ export default class CategoryComponent implements OnInit {
   
   categories: CategoryModel[] = [];
   dataSource = new MatTableDataSource<CategoryModel>();
-  columnsToDisplay: string[] = ['categoryId', 'name', 'estado', 'acciones'];
+  columnsToDisplay: string[] = ['categoryId', 'name','descrip', 'estado', 'acciones'];
   value = '';
 
   constructor(

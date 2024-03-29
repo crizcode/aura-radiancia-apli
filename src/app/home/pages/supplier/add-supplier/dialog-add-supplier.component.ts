@@ -18,7 +18,9 @@ export class DialogAddSupplierComponent implements OnInit {
 
  supplierData = {
     name: '',
-    estado: '',
+    direccion: '',
+    telefono: ''
+
   };
 
   constructor(
@@ -49,8 +51,9 @@ export class DialogAddSupplierComponent implements OnInit {
 
   isValidSupplierData(): boolean {
     return (
-      this.supplierData.name.trim() !== '' &&
-      this.supplierData.estado !== null
+      this.supplierData.name !== null &&
+      this.supplierData.direccion !== null &&
+      this.supplierData.telefono !== null
     );
   }
 

@@ -1,7 +1,9 @@
 export interface SupplierModel {
     supplierId?: number;
     name: string;
-    estado: string;
+    direccion: string;
+    telefono: string;
+    estado?: string;
  
 }
   

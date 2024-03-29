@@ -19,7 +19,7 @@ export default class SupplierComponent implements OnInit {
   
   categories: SupplierModel[] = [];
   dataSource = new MatTableDataSource<SupplierModel>();
-  columnsToDisplay: string[] = ['supplierId', 'name', 'estado', 'acciones'];
+  columnsToDisplay: string[] = ['supplierId', 'name', 'direccion', 'telefono', 'estado', 'acciones'];
   value = '';
 
   constructor(
@@ -112,7 +112,7 @@ export default class SupplierComponent implements OnInit {
             this.listarProveedores();
           },
           error: (error) => {
-            console.error('Error al eliminar producto:', error);
+            console.error('Error al eliminar proveedor:', error);
           },
           complete: () => {
           }

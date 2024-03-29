@@ -12,17 +12,28 @@
 
         </div>
 
-        <!-- Descricpión -->
+             <!-- Descricpión -->
+             <div class="row">
+                <div class="col mt-2">
+                    <mat-form-field class="field-full-width" appearance="fill">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput placeholder="Ex. dire" [(ngModel)]="supplierData.direccion" name="direccion">
+                    </mat-form-field>
+                </div>
+    
+            </div>
+
+            
+                 <!-- Descricpión -->
         <div class="row">
             <div class="col mt-2">
                 <mat-form-field class="field-full-width" appearance="fill">
-                    <mat-label>Estado</mat-label>
-                    <input matInput placeholder="Ex. estado" [(ngModel)]="supplierData.estado" name="descripcion">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput placeholder="Ex. telf" [(ngModel)]="supplierData.telefono" name="telefono">
                 </mat-form-field>
             </div>
 
         </div>
-
 
     </form>
 </mat-dialog-content>

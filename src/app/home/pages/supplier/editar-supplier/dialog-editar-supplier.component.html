@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Editar proveedor</h2>
-<mat-dialog-content >
+<mat-dialog-content>
     <form class="m-2 border p-3 rounded">
-        
+
         <!-- Nombre -->
         <div class="col">
 
@@ -12,16 +12,38 @@
 
         </div>
 
-        <!-- Descricpión -->
-        <div class="row">
-            <div class="col mt-2">
-                <mat-form-field class="field-full-width" appearance="fill">
-                    <mat-label>Estado</mat-label>
-                    <input matInput placeholder="Ex. prod 1 desc" [(ngModel)]="supplier.estado" name="estado">
-                </mat-form-field>
-            </div>
+        <!-- Dirección -->
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Direccion</mat-label>
+                <input matInput placeholder="Ex. dire " [(ngModel)]="supplier.direccion" name="dire">
+            </mat-form-field>
 
         </div>
+
+        <!-- Telefono -->
+        <div class="col">
+
+            <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Telefono</mat-label>
+                <input matInput placeholder="Ex. telefono " [(ngModel)]="supplier.telefono" name="telefono">
+            </mat-form-field>
+
+        </div>
+        
+        <!-- Estado -->
+        <div class="row">
+            <div class="col mt-2">
+              <mat-form-field class="field-full-width" appearance="fill">
+                <mat-label>Estado</mat-label>
+                <mat-select [(ngModel)]="supplier.estado" name="estado">
+                  <mat-option *ngFor="let estado of estados" [value]="estado.value"> {{ estado.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
     </form>
 </mat-dialog-content>
 

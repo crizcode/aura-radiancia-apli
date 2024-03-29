@@ -11,7 +11,7 @@ import { CategoryAdapterService } from 'src/app/context/category/infrastucture/a
 
 export class DialogEditarCategoryComponent implements OnInit {
   category: CategoryModel = {} as CategoryModel;
-  loaded: boolean = false; // Flag para indicar si los datos se han cargado
+  loaded: boolean = false; 
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { categoryId: number },
@@ -39,11 +39,19 @@ export class DialogEditarCategoryComponent implements OnInit {
   }
 
   updateCategoria(): void {
+    // Convertir el estado a una cadena '1' o '0'
+    this.category.estado = this.category.estado == 'Activo' ? '1' : '0';
     this.categoryService.update(this.category).subscribe(() => {
-      console.log('Categoria actualizada correctamente');
       this.dialogRef.close('success');
     }, error => {
       console.error('Error al actualizar categoria:', error);
     });
   }
+
+estados = [
+  { name: 'Activo', value: 'Activo' },
+  { name: 'Inactivo', value: 'Inactivo' }
+];
+
+
 }

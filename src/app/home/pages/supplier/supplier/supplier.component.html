@@ -31,6 +31,19 @@
       <mat-cell *matCellDef="let supplier"> {{ supplier.name }} </mat-cell>
     </ng-container>
 
+    
+    <ng-container matColumnDef="direccion">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by dir"> Dirreción </mat-header-cell>
+      <mat-cell *matCellDef="let supplier"> {{ supplier.direccion }} </mat-cell>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="telefono">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header sortActionDescription="Sort by telf"> Telefono </mat-header-cell>
+      <mat-cell *matCellDef="let supplier"> {{ supplier.telefono }} </mat-cell>
+    </ng-container>
+
+
     <ng-container matColumnDef="estado">
       <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by descripcion"> Estado </mat-header-cell>
       <mat-cell *matCellDef="let supplier"> {{ supplier.estado }} </mat-cell>
@@ -42,11 +55,11 @@
       <mat-cell *matCellDef="let supplier">
         <!-- Botones de acción -->
         <div style="margin: 2px; display: flex; gap: 5px;"> 
-          <button class="btn btn-info" style="font-size: 6px; padding: 1px 2px;" (click)="dialogEditarProveedor(supplier.supplierId)" >
+          <button class="btn btn-info" style="font-size: 4px; padding: 1px 1px;" (click)="dialogEditarProveedor(supplier.supplierId)" >
             <mat-icon>edit</mat-icon>
           </button>
       
-          <button class="btn btn-danger" style="font-size: 6px; padding: 1px 2px;" (click)=" confirmDeleteProveedor(supplier.supplierId)">
+          <button class="btn btn-danger" style="font-size: 4px; padding: 1px 1px;" (click)=" confirmDeleteProveedor(supplier.supplierId)">
             <mat-icon>delete</mat-icon>
         </button>
         </div>

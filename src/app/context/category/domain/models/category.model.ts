@@ -1,7 +1,8 @@
 export interface CategoryModel {
     categoryId?: number;
     name: string;
-    estado: string;
+    descrip: string;
+    estado?: string;
  
 }
   
